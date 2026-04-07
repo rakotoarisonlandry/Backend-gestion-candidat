@@ -7,12 +7,11 @@ import { validateCandidate } from "../controllers/candidate.controller";
 import { authMiddleware } from "../middlewares/auth.middleware";
 
 const router = express.Router();
-router.use(authMiddleware);
 
-router.post("/:id/validate", validateCandidate);
-router.delete("/:id", deleteCandidate);
-router.put("/:id", updateCandidate);
-router.get("/:id", getCandidate);
-router.post("/", createCandidate);
+router.post("/:id/validate",authMiddleware,  validateCandidate);
+router.delete("/:id",authMiddleware,  deleteCandidate);
+router.put("/:id", authMiddleware, updateCandidate);
+router.get("/:id",authMiddleware,  getCandidate);
+router.post("/", authMiddleware, createCandidate);
 
 export default router;
