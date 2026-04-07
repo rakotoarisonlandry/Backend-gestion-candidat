@@ -73,9 +73,9 @@ describe("Candidate API FULL TEST", () => {
         name: "L",
       });
 
-    expect(res.status).toBe(400);
+    expect(res.status).toBe(422);
   });
-
+   
   // Bloker raha tsy misy token
   it("should block without token", async () => {
     const res = await request(app)
