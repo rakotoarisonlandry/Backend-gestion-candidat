@@ -98,6 +98,10 @@ export const deleteCandidate = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+export const getAllCandidates = async (req : Request, res: Response) => {
+  const candidates = await Candidate.find({ deletedAt: null });
+  res.json(candidates);
+};
 
 export const validateCandidate = async (req: Request, res: Response) => {
   try {

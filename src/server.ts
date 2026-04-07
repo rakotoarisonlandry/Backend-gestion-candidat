@@ -4,10 +4,15 @@ import dotenv from "dotenv";
 import candidateRoutes from "./routes/candidate.routes";
 import authRoutes from "./routes/auth.routes";
 import rateLimit from "express-rate-limit";
-
+import cors from "cors";
 dotenv.config();
 
 const app = express();
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
+
 app.use(express.json());
 app.use("/api/auth", rateLimit({
   windowMs: 60 * 1000,

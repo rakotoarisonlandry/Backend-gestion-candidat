@@ -1,5 +1,5 @@
 import express from "express";
-import { createCandidate } from "../controllers/candidate.controller";
+import { createCandidate, getAllCandidates } from "../controllers/candidate.controller";
 import { getCandidate } from "../controllers/candidate.controller";
 import { updateCandidate } from "../controllers/candidate.controller";
 import { deleteCandidate } from "../controllers/candidate.controller";
@@ -12,6 +12,7 @@ router.post("/:id/validate",authMiddleware,  validateCandidate);
 router.delete("/:id",authMiddleware,  deleteCandidate);
 router.put("/:id", authMiddleware, updateCandidate);
 router.get("/:id",authMiddleware,  getCandidate);
+router.get("/", authMiddleware, getAllCandidates);
 router.post("/", authMiddleware, createCandidate);
 
 export default router;
