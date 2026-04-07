@@ -1,5 +1,8 @@
 name: Backend CI
-
+env:
+  MONGO_URI: ${{ secrets.MONGO_URI }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  PORT: ${{ secrets.PORT }}
 on:
   push:
     branches: [main]
