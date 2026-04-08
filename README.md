@@ -99,9 +99,7 @@ npm run dev
 #### Lancer le test :
 
 ```bash
-k6 run load-test.js \
--e BASE_URL=https://backend-gestion-candidat.onrender.com/api \
--e TOKEN=YOUR_TOKEN
+k6 run load-test.js
 ```
 
 
