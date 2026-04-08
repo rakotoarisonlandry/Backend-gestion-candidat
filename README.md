@@ -122,7 +122,7 @@ npm run test -- --coverage
 
 ---
 
-##  Structure du projet
+##  Structure
 
 ```
 src/
