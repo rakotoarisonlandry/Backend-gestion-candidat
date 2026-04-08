@@ -6,6 +6,8 @@ import authRoutes from "./routes/auth.routes";
 import rateLimit from "express-rate-limit";
 import cors from "cors";
 dotenv.config();
+process.stdout.setEncoding("utf8");
+process.stderr.setEncoding("utf8");
 
 const app = express();
 app.use(cors({

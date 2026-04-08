@@ -8,7 +8,7 @@ import { ZodError } from "zod";
 const handleCandidateError = (error: unknown, res: Response): void => {
   if (error instanceof ZodError) {
     res.status(422).json({
-      error: "Échec de la validation",
+      error: "echec de la validation",
       details: error.issues.map((e: any) => ({
         field: e.path.join("."),
         message: e.message,
@@ -22,14 +22,14 @@ const handleCandidateError = (error: unknown, res: Response): void => {
   const field = Object.keys(keyValue)[0];
   const value = keyValue[field];
 
-  let message = `La valeur "${value}" est déjà utilisée pour le champ "${field}".`;
+  let message = `La valeur "${value}" est dejà utilisee pour le champ "${field}".`;
 
   if (field === "email") {
-    message = `Cet email "${value}" est déjà utilisé.`;
+    message = `Cet email "${value}" est dejà utilise.`;
   }
 
   if (field === "username") {
-    message = `Le nom d'utilisateur "${value}" est déjà pris.`;
+    message = `Le nom d'utilisateur "${value}" est dejà pris.`;
   }
 
   res.status(409).json({
@@ -44,7 +44,7 @@ const handleCandidateError = (error: unknown, res: Response): void => {
 
   res.status(500).json({
     error: "Erreur interne du serveur",
-    message: "Une erreur inattendue s'est produite. Veuillez réessayer plus tard.",
+    message: "Une erreur inattendue s'est produite. Veuillez reessayer plus tard.",
   });
 };
 
@@ -54,7 +54,7 @@ export const createCandidate = async (req: Request, res: Response) => {
     const candidate = await Candidate.create(data);
 
     res.status(201).json(candidate);
-    logger.info({ route: "/candidates", action: "create" }, "Candidat créé");
+    logger.info({ route: "/candidates", action: "create" }, "Candidat cree");
   } catch (error: unknown) {
     handleCandidateError(error, res);
   }
@@ -72,7 +72,7 @@ export const getCandidate = async (req: Request, res: Response) => {
     }
 
     res.json(candidate);
-    logger.info({ route: "/candidates/:id", action: "get" }, "Candidat récupéré");
+    logger.info({ route: "/candidates/:id", action: "get" }, "Candidat recupere");
   } catch (error: unknown) {
     handleCandidateError(error, res);
   }
@@ -109,8 +109,8 @@ export const deleteCandidate = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Candidat introuvable" });
     }
 
-    res.json({ message: "Candidat supprimé (soft delete)" });
-    logger.info({ route: "/candidates/:id", action: "delete" }, "Candidat supprimé (soft delete)");
+    res.json({ message: "Candidat supprime (soft delete)" });
+    logger.info({ route: "/candidates/:id", action: "delete" }, "Candidat supprime (soft delete)");
   } catch (error: unknown) {
     handleCandidateError(error, res);
   }
@@ -136,10 +136,10 @@ export const validateCandidate = async (req: Request, res: Response) => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     res.json({
-      message: "Candidat validé",
+      message: "Candidat valide",
       candidateId: candidate._id,
     });
-    logger.info({ route: "/candidates/:id/validate", action: "validate" }, "Candidat validé");
+    logger.info({ route: "/candidates/:id/validate", action: "validate" }, "Candidat valide");
   } catch (error: unknown) {
     handleCandidateError(error, res);
   }
